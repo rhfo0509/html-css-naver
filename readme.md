@@ -103,6 +103,10 @@ html, body {
 
 `::before`와 `::after`를 이용하면 HTML 태그나 자바스크립트 없이 CSS만으로 컨텐츠뿐만 아니라 디자인 요소를 추가할 수 있는 특별한 기능을 하게 된다.
 
+## z-index + display: none을 쓰면 안될 때(웹 접근성)
+
+### z-index
+
 > `position: static`를 가진 요소는 기본적으로 `z-index` 값을 가질 수 없기 때문에 `position: static`를 가진 요소는 다른 `position` 값 (예: `relative`, `absolute`, `fixed,` `sticky`)를 가진 요소보다 항상 더 아래에 쌓이게 된다.
 
 따라서
@@ -123,3 +127,28 @@ html, body {
 }
 ```
 
+* `#header-hamburger:hover`의 자식 태그 중 햄버거 메뉴를 표시하는 `div` 태그를 `position: relative`로 설정해서 `::before` 태그의 상위에 위치하도록 한다.<br>
+(기본적으로 `position: relative`만 설정하는 경우 위치가 변하지 않음)
+
+* 아니면 `div`의 `z-index`를 `1`로 설정하고, `::before`의 `z-index`를 `0`으로 설정해서 햄버거 메뉴가 더 앞으로 나오도록 하는 방법도 있다.
+
+* `z-index`는 부모-자식간이 아닌 형제끼리만 적용된다.
+
+### display: none을 쓰면 안될 때
+
+시각장애인이 스크린 리더기로 아이콘을 파악하기 위해서 아이콘에 대한 내용 설명이 필요하다. 하지만 비장애인에게는 보여질 필요가 없는 경우, 내용 설명 부분을 `display: none`으로 설정하면 괜찮다고 생각할 수 있다.
+
+하지만, `display: none`인 경우 실제로 스크린 리더기가 이 부분을 읽지 않고 지나치게 되기 때문에
+
+```css
+.blind {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+```
+
+처럼 꼼수를 사용해서 스크린 리더기도 읽을 수 있고, 비장애인에게도 보이지 않도록 css를 설정하면 된다.

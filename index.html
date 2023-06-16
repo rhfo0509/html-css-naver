@@ -117,6 +117,14 @@
     #main {
       height: 100%;
     }
+    .blind {
+      position: absolute;
+      clip: rect(0 0 0 0);
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
@@ -124,7 +132,10 @@
     <div id="wrap-center">
       <div id="header">
         <button id="header-hamburger">
+          <!-- ::before -->
           <div></div>
+          <span class="blind">확장 영역</span>
+          <!-- ::after -->
         </button>
       </div>
       <div id="search"></div>
