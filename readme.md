@@ -103,6 +103,8 @@ html, body {
 
 `::before`와 `::after`를 이용하면 HTML 태그나 자바스크립트 없이 CSS만으로 컨텐츠뿐만 아니라 디자인 요소를 추가할 수 있는 특별한 기능을 하게 된다.
 
+---
+
 ## z-index + display: none을 쓰면 안될 때(웹 접근성)
 
 ### z-index
@@ -136,7 +138,7 @@ html, body {
 
 ### display: none을 쓰면 안될 때
 
-시각장애인이 스크린 리더기로 아이콘을 파악하기 위해서 아이콘에 대한 내용 설명이 필요하다. 하지만 비장애인에게는 보여질 필요가 없는 경우, 내용 설명 부분을 `display: none`으로 설정하면 괜찮다고 생각할 수 있다.
+시각장애인이 스크린 리더기로 아이콘을 파악하기 위해서 아이콘에 대한 내용 설명이 필요하다. 하지만 비장애인에게는 보여질 필요가 없는 경우, 이 부분을 `display: none`으로 설정하면 괜찮다고 생각할 수 있다.
 
 하지만, `display: none`인 경우 실제로 스크린 리더기가 이 부분을 읽지 않고 지나치게 되기 때문에
 
@@ -151,4 +153,91 @@ html, body {
 }
 ```
 
-처럼 꼼수를 사용해서 스크린 리더기도 읽을 수 있고, 비장애인에게도 보이지 않도록 css를 설정하면 된다.
+처럼 일종의 꼼수(?)를 사용해서 스크린 리더기도 읽을 수 있고, 비장애인에게도 보이지 않도록 할 수 있다.
+
+---
+
+## 길어진 css 코드 정리하는 법
+
+![image](https://github.com/rhfo0509/react-nodebird/assets/85874042/0da5731c-70fb-4110-b44a-cbcf924dce97)
+
+"네이버페이" 버튼과 "알림 버튼"을 추가하기 위해 햄버거 메뉴 버튼을 복사
+
+### `border-box` 
+
+`box-sizing`의 기본값은 `content-box`인데, 이 경우 `width` 및 `height`는 오직 **`content`** 영역에만 영향을 받기 때문에 `padding`과 `border`가 존재하는 경우 지정한 `width`와 `height`보다 태그 영역이 더 커질 수 있다.
+
+`border-box`로 설정하면 `width` 및 `height`의 길이가 **`content` + `padding` + `border`** 가 되므로 지정한 `width`, `height` 값이 변하는 경우가 절대 없게 된다.
+
+```css
+* {
+  box-sizing: border-box;
+}
+```
+
+"네이버페이" 아이콘은 나머지 두 아이콘에 비해 `width`가 `4px` 더 길다.<br>
+아이콘을 더 길게 하면, 버튼도 그만큼 더 길어지게 되는데 이를 막기 위해서는 `box-sizing: border-box` 상태에서 버튼의 `padding`을 길어진 아이콘만큼 더 짧게 설정하면 해결이 가능하다.
+
+### 중복된 부분 포함하기
+
+실제로 세 아이콘은 **위치**("네이버페이"의 경우 버튼의 `padding`도 포함)를 제외하고 기능이 겹친다.
+
+따라서 공통 부분을 상단에 작성하고, 서로 다른 부분만 따로 작성하면 가독성이 더 높아지게 된다.
+
+```css
+#header-hamburger, #header-naverpay, #header-notice {
+  display: inline-block;
+  padding: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: absolute;
+  top: 18px;
+}
+#header-hamburger:hover::before, #header-naverpay:hover::before, #header-notice:hover::before {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 44px;
+  height: 44px;
+  content: '';
+  background-color: var(--color_option_bg);
+  border-radius: 50%;
+}
+#header-hamburger:hover > div,
+#header-naverpay:hover > div,
+#header-notice:hover > div {
+  position: relative;
+}
+#header-hamburger > div,
+#header-naverpay > div,
+#header-notice > div {
+  background-image: url(./sp_main.png);
+  background-size: 422px 405px;
+  width: 26px;
+  height: 26px;
+}
+#header-hamburger {
+  left: -10px;
+}
+#header-hamburger > div {
+  background-position: -335px -284px;
+}
+#header-naverpay {
+  padding: 10px 8px;
+  right: 42px;
+}
+#header-naverpay > div {
+  background-position: -31px -316px;
+  width: 30px;
+}
+#header-notice {
+  right: -10px;
+}
+#header-notice > div {
+  background-position: -364px -27px;
+  width: 26px;
+}
+```
+
+모든 태그가 아니더라도, 절반 이상의 태그가 공통인 값을 가지고 있다면(ex. `width`) 일단 공통 값을 상단에 작성한 후 달라지는 부분만 하위 각 태그에 따로 작성한다.

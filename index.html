@@ -68,6 +68,9 @@
       --color_dic: #031f5f;
       --color_dic_rgb: 3,31,95;
     }
+    * {
+      box-sizing: border-box;
+    }
     html, body {
       margin: 0;
       padding: 0;
@@ -84,7 +87,7 @@
       text-align: left;
       position: relative;
     }
-    #header-hamburger {
+    #header-hamburger, #header-naverpay, #header-notice {
       display: inline-block;
       padding: 10px;
       border: none;
@@ -92,9 +95,8 @@
       cursor: pointer;
       position: absolute;
       top: 18px;
-      left: -10px;
     }
-    #header-hamburger:hover::before {
+    #header-hamburger:hover::before, #header-naverpay:hover::before, #header-notice:hover::before {
       position: absolute;
       top: 1px;
       left: 1px;
@@ -104,18 +106,42 @@
       background-color: var(--color_option_bg);
       border-radius: 50%;
     }
-    #header-hamburger:hover > div {
+    #header-hamburger:hover > div,
+    #header-naverpay:hover > div,
+    #header-notice:hover > div {
       position: relative;
     }
-    #header-hamburger > div {
+    #header-hamburger > div,
+    #header-naverpay > div,
+    #header-notice > div {
       background-image: url(./sp_main.png);
       background-size: 422px 405px;
-      background-position: -335px -284px;
       width: 26px;
       height: 26px;
     }
+    #header-hamburger {
+      left: -10px;
+    }
+    #header-hamburger > div {
+      background-position: -335px -284px;
+    }
+    #header-naverpay {
+      padding: 10px 8px;
+      right: 42px;
+    }
+    #header-naverpay > div {
+      background-position: -31px -316px;
+      width: 30px;
+    }
+    #header-notice {
+      right: -10px;
+    }
+    #header-notice > div {
+      background-position: -364px -27px;
+      width: 26px;
+    }
     #main {
-      height: 100%;
+      height: 2000px;
     }
     .blind {
       position: absolute;
@@ -135,6 +161,18 @@
           <!-- ::before -->
           <div></div>
           <span class="blind">확장 영역</span>
+          <!-- ::after -->
+        </button>
+        <button id="header-naverpay">
+          <!-- ::before -->
+          <div></div>
+          <span class="blind">네이버 페이</span>
+          <!-- ::after -->
+        </button>
+        <button id="header-notice">
+          <!-- ::before -->
+          <div></div>
+          <span class="blind">알림</span>
           <!-- ::after -->
         </button>
       </div>
