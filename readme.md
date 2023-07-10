@@ -129,14 +129,14 @@ html, body {
 }
 ```
 
-* `#header-hamburger:hover`의 자식 태그 중 햄버거 메뉴를 표시하는 `div` 태그를 `position: relative`로 설정해서 `::before` 태그의 상위에 위치하도록 한다.<br>
+* `#header-hamburger:hover`의 자식 태그 중 햄버거 메뉴를 표시하는 `div` 태그를 `position: relative`로 설정해서 `::before` 태그보다 위에 위치하도록 한다.<br>
 (기본적으로 `position: relative`만 설정하는 경우 위치가 변하지 않음)
 
 * 아니면 `div`의 `z-index`를 `1`로 설정하고, `::before`의 `z-index`를 `0`으로 설정해서 햄버거 메뉴가 더 앞으로 나오도록 하는 방법도 있다.
 
 * `z-index`는 부모-자식간이 아닌 형제끼리만 적용된다.
 
-### display: none을 쓰면 안될 때
+### `display: none`을 쓰면 안될 때
 
 시각장애인이 스크린 리더기로 아이콘을 파악하기 위해서 아이콘에 대한 내용 설명이 필요하다. 하지만 비장애인에게는 보여질 필요가 없는 경우, 이 부분을 `display: none`으로 설정하면 괜찮다고 생각할 수 있다.
 
@@ -236,8 +236,48 @@ html, body {
 }
 #header-notice > div {
   background-position: -364px -27px;
-  width: 26px;
 }
 ```
 
 모든 태그가 아니더라도, 절반 이상의 태그가 공통인 값을 가지고 있다면(ex. `width`) 일단 공통 값을 상단에 작성한 후 달라지는 부분만 하위 각 태그에 따로 작성한다.
+
+---
+
+## 검색창 만들기
+
+```html
+<div id="search">
+  <form action="">
+    <label for="search-input" class="blind">검색어 입력</label>
+    <input id="search-input" type="text">
+    <button class="blind">검색</button>
+  </form>
+</div>
+```
+검색창을 `form`으로 하게 되면 `input` 창에서 엔터를 쳤을 때 자동으로 검색 결과 페이지로 넘어가도록 할 수 있음<br>
+그리고 "검색어 입력"과 "검색" 부분의 `class`를 `blind`로 설정함으로써 실제로는 보이지 않지만 시각장애인에게 검색창과 검색 버튼의 존재 여부를 알려줄 수 있다.
+
+또한 `#search` 부분이 화면의 제일 상단에 위치해 있는 것을 확인할 수 있는데, 이는 `#header`의 `height`이 `0`이기 때문이다. `#header`의 자식 태그들의 `position`이 모두 `absolute`라서 부모 태그에게 영향을 주지 않으므로 `#header`는 높이를 가지지 않게 된다. 따라서 `#header`에 명시적으로 `height: 64px`을 지정해준다.
+
+### `style`은 무조건 `head` 태그에 넣어줄 필요가 없다?
+
+원칙적으로는 `head` 태그 내에 넣는 것이 맞으나, 개발의 편의를 위해 특정 태그 위에 작성하는 식으로 `style` 태그를 분리할 수 있다. 다만 `head` 이외에 작성하는 것은 규정 위반일 뿐만 아니라 페이지를 불러올 때 성능 저하나 예상치 않은 결과를 가져올 수 있으므로 나중에 한꺼번에 `head` 태그로 옮기거나 별도의 css 파일로 저장하는 것이 좋다.
+
+---
+
+## `inline-block`의 문제점과 `vertical-align`에 대한 오해
+
+### `inline-block`의 문제점
+
+![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/1cd954f8-df97-4a62-8468-bd729a462996)
+
+`a` 태그와 `input` 태그 사이에 `margin`을 제외한 추가적인 공백이 존재한다.
+
+![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/62b5f3ac-571c-4434-8829-23d8c826d373)
+
+이는 `a`와 `input` 태그가 `inline-block`이기 때문에 발생하는 현상으로, 동그라미로 표시한 여백을 지우면 문제가 해결되나 코드의 가독성 문제가 발생한다. 따라서 이 경우 나중에 설명할 `inline-flex`를 사용하여 해결할 수 있다.
+
+### `vertical-align`에 대한 오해
+
+> `vertical-align`은 실제로 세로 가운데 정렬을 의미하지 않는다.
+

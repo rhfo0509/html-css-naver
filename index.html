@@ -71,7 +71,7 @@
     * {
       box-sizing: border-box;
     }
-    html, body {
+    html, body, form {
       margin: 0;
       padding: 0;
     }
@@ -86,6 +86,7 @@
     #header {
       text-align: left;
       position: relative;
+      height: 64px;
     }
     #header-hamburger, #header-naverpay, #header-notice {
       display: inline-block;
@@ -138,7 +139,6 @@
     }
     #header-notice > div {
       background-position: -364px -27px;
-      width: 26px;
     }
     #main {
       height: 2000px;
@@ -176,7 +176,61 @@
           <!-- ::after -->
         </button>
       </div>
-      <div id="search"></div>
+      <style>
+        #search > form {
+          display: inline-block;
+          width: 708px;
+          height: 60px;
+          border: 1px solid #03c75a;
+          border-radius: 33px;
+          text-align: left;
+        }
+        #search-input {
+          width: 480px;
+          height: 100%;
+          padding: 17px 0;
+          border: none;
+          outline: none;
+        }
+        #search > form a {
+          width: 68px;
+          height: 100%;
+          padding: 17px;
+          margin-right: 12px;
+          display: inline-block;
+        }
+        #search-svg {
+          display: inline-block;
+          width: 68px;
+          height: 100%;
+          margin-right: 12px;
+          padding-left: 10px;
+        }
+        #search-svg svg {
+          width: 24px;
+          height: 24px;
+        }
+      </style>
+      <div id="search">
+        <form action="">
+          <a id="search-svg" href="#">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"></path></svg>
+          </a>
+          <input id="search-input" type="text" placeholder="검색어를 입력하세요.">
+          <label for="search-input" class="blind">검색어 입력</label>
+          <div id="search-right">
+            <button href="#" id="search-keyboard">
+              <span class="blind">입력 도구</span>
+            </button>
+            <button href="#" id="search-recent">
+              <span class="blind">자동완성/최근검색어펼치기</span>
+            </button>
+            <button id="search-button">
+              <span class="blind">검색</span>
+            </button>
+          </div>
+        </form>
+      </div>
       <div id="navigation"></div>
       <div id="main"></div>
     </div>
