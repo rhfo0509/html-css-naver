@@ -254,30 +254,143 @@ html, body {
   </form>
 </div>
 ```
-검색창을 `form`으로 하게 되면 `input` 창에서 엔터를 쳤을 때 자동으로 검색 결과 페이지로 넘어가도록 할 수 있음<br>
+검색창을 `form`으로 하게 되면 `input` 창에서 엔터를 쳤을 때 자동으로 검색 결과 페이지로 넘어가도록 할 수 있다.<br>
 그리고 "검색어 입력"과 "검색" 부분의 `class`를 `blind`로 설정함으로써 실제로는 보이지 않지만 시각장애인에게 검색창과 검색 버튼의 존재 여부를 알려줄 수 있다.
 
-또한 `#search` 부분이 화면의 제일 상단에 위치해 있는 것을 확인할 수 있는데, 이는 `#header`의 `height`이 `0`이기 때문이다. `#header`의 자식 태그들의 `position`이 모두 `absolute`라서 부모 태그에게 영향을 주지 않으므로 `#header`는 높이를 가지지 않게 된다. 따라서 `#header`에 명시적으로 `height: 64px`을 지정해준다.
+또한 `#search` 부분이 화면의 제일 상단에 위치해 있는 것을 확인할 수 있는데, 이는 `#header`의 `height`이 `0`이기 때문이다. `#header`의 자식 태그들의 `position`이 모두 `absolute`라서 부모 태그에게 영향을 주지 않으므로 `#header`는 실질적으로 높이를 가지지 않게 된다. 따라서 `#header`에 명시적으로 `height: 64px`을 지정해줌으로써 해결할 수 있다.
 
 ### `style`은 무조건 `head` 태그에 넣어줄 필요가 없다?
 
-원칙적으로는 `head` 태그 내에 넣는 것이 맞으나, 개발의 편의를 위해 특정 태그 위에 작성하는 식으로 `style` 태그를 분리할 수 있다. 다만 `head` 이외에 작성하는 것은 규정 위반일 뿐만 아니라 페이지를 불러올 때 성능 저하나 예상치 않은 결과를 가져올 수 있으므로 나중에 한꺼번에 `head` 태그로 옮기거나 별도의 css 파일로 저장하는 것이 좋다.
+원칙적으로는 `head` 태그 내에 넣는 것이 맞으나, 개발의 편의를 위해 특정 태그 위에 작성하는 식으로 `style` 태그를 분리할 수 있다. 다만 이럴 경우 규정 위반일 뿐만 아니라 페이지를 불러올 때 성능 저하 및 예상치 않은 결과를 가져올 수 있으므로 나중에 한꺼번에 `head` 태그로 옮기거나 아니면 별도의 css 파일로 저장하는 것이 좋다.
 
 ---
 
-## `inline-block`의 문제점과 `vertical-align`에 대한 오해
-
-### `inline-block`의 문제점
+## `inline-block`의 문제점
 
 ![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/1cd954f8-df97-4a62-8468-bd729a462996)
 
 `a` 태그와 `input` 태그 사이에 `margin`을 제외한 추가적인 공백이 존재한다.
 
-![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/62b5f3ac-571c-4434-8829-23d8c826d373)
+![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/843e5e3c-2c84-4c31-aebd-f2a04f942278)
 
-이는 `a`와 `input` 태그가 `inline-block`이기 때문에 발생하는 현상으로, 동그라미로 표시한 여백을 지우면 문제가 해결되나 코드의 가독성 문제가 발생한다. 따라서 이 경우 나중에 설명할 `inline-flex`를 사용하여 해결할 수 있다.
+이는 `a`와 `input` 태그가 `inline-block`이기 때문에 발생하는 현상으로, 동그라미로 표시한 여백을 지우면 문제가 해결되나 코드의 가독성 문제가 발생한다. 따라서 나중에 설명할 `inline-flex`를 사용하여 이 문제를 해결할 수 있다.
 
-### `vertical-align`에 대한 오해
+---
 
-> `vertical-align`은 실제로 세로 가운데 정렬을 의미하지 않는다.
+## `flex`로 간편하게 배치하기
 
+정렬하고 싶은 요소의 부모 요소를 `display: flex`로 설정<br>
+그러나 기본적으로 `flex`의 경우 `width: 100%`이므로 `display: inline-block`과 비슷한 `display: inline-flex`로 설정하여 지정한 `width` 값을 가지도록 할 수 있다.
+
+### 자식 요소에서의 `flex` 속성
+
+부모 요소가 `display: flex`일 때, 자식 요소에 `flex: 1`을 주게 되면 자식 요소는 늘어날 수 있는 범위 내에서 최대한으로 늘어나게 된다.
+
+만약, 자식 요소 두 개에 각각 `flex: 2`, `flex: 1` 속성을 주게 되면 요소들은 본래 가지고 있던 `width`를 무시한 채 2 : 1 비율로 너비가 설정된다.
+
+### `#search-right` 설정
+
+![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/95885d8f-14bf-4060-a8c3-015bd0ddf4f7)
+
+크롬 개발자도구에서 간편하게 `flex`를 설정할 수 있다. 오른쪽 정렬을 위해 `justify-content: flex-end`, 각 버튼들을 세로로 쭉 늘리기 위해 `align-items: stretch`로 설정하였다.
+
+### `#search-svg` 설정
+
+기존의 `a` 태그가 `inline-block`이었기 때문에 `inline-flex`로 설정한 후, 가로 세로 가운데 정렬을 위해 `justify-content: center`, `align-items: center`로 설정하였다.
+
+### `#search-keyboard` 설정
+
+`hover` 시 이미지 밝기에 변화를 주기 위해 `filter` 속성을 이용한다.<br>
+`filter: brightness(0.7)` -> 기존보다 밝기가 30% 어두워짐
+
+### `#search-input`의 placeholder 색상 설정
+
+css에는 placeholder에 대한 가상 선택자 `::placeholder`를 제공한다.
+
+```css
+#search-input::placeholder {
+  color: white;
+}
+#search-input:focus::placeholder {
+  color: rgb(230, 230, 230);
+}
+```
+
+평소에는 보이지 않다가 `focus` 시에만 placeholder가 보이도록 설정할 수 있다.
+
+---
+
+## `focus-within`
+
+![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/f298ae12-3ba4-4023-92b8-a34060f40c53)
+
+`input:focus` 시에 동그라미친 부분에 세로선이 활성화됨 -> `#search-svg`에 `::after`로 가상 선택자로 두어 세로선을 추가한다.
+
+```css
+#search-svg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 100%;
+  margin-right: 12px;
+  padding-left: 10px;
+  position: relative;
+}
+#search-svg::after {
+  content: '';
+  width: 1px;
+  height: 20px;
+  position: absolute;
+  background-color: #e4e4e4;
+  right: 0;
+}
+```
+
+`::after` 요소의 `position`을 `absolute`로 하지 않으면 다른 요소들의 위치가 밀리는 문제가 발생한다. 그리고 기준점을 `#search-svg`으로 하기 위해 `#search-svg`의 `position`을 `relative`로 설정한다.
+
+### 형제 요소간에 영향을 끼치고 싶을 때?
+
+세로선은 `input`이 `focus`될 때만 활성화되야 함<br>
+그러나 `input`과 `::after` 요소를 가지고 있는 `#search-svg`는 부모 관계가 아닌 형제 관계이므로 `input`의 `focus` 여부에 따라 세로선 등장 여부를 결정할 수 없다.
+
+바로 이 때 해결책이 `focus-within`이다.
+두 요소의 공통 부모 요소인 `form` 태그에 `focus-within`을 설정하면 **자식 요소의 변화도 `form` 태그에서 감지할 수 있다.**
+
+```css
+#search-svg::after {
+  display: none;
+}
+#search > form:focus-within #search-svg::after {
+  display: inline-block;
+  content: '';
+  width: 1px;
+  height: 20px;
+  position: absolute;
+  background-color: #e4e4e4;
+  right: 0;
+}
+```
+
+기본적으로는 세로선이 보이지 않다가 `input:focus`를 감지 시 부모 태그에서 감지하여(`:focus-within`) 세로선이 보이도록 설정하였다.
+
+---
+
+## 리스트를 활용해서 메뉴 만들기
+
+![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/47a13738-e4ed-4fe4-9f09-a64a57aea0fa)
+
+### `nth-of-type` vs `nth-child`
+
+둘다 부모의 `n`번 째 자식 요소를 가리킨다는 점은 동일하나, `type`을 구별하지 않는 `nth-child`와 달리 `nth-of-type`은 `type`을 구별한다.<br>
+지금 만드는 메뉴의 경우도 `type`이 `li`인 경우만 고려하기 때문에 `nth-of-type` 사용이 더 적절하다.
+
+### 왜 `font-size`의 단위가 `rem`이면 좋을까?
+
+`rem`은 `html` 태그의 `font-size`를 뜻한다.
+
+예를 들어 글자 크기가 아래와 같이 선택이 가능할 때
+
+`축소: 0.8rem, 기본: 1rem, 확대: 1.2rem`
+
+`html`의 `font-size`만 바꾸더라도 모든 경우에 대해 균일하게 적용되기 때문에 편리하다는 장점이 있다.
