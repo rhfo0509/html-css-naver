@@ -1,4 +1,4 @@
-# 네이버 클론코딩 (1)
+# 네이버 클론코딩
 
 ## block vs inline-block vs inline
 
@@ -394,3 +394,60 @@ css에는 placeholder에 대한 가상 선택자 `::placeholder`를 제공한다
 `축소: 0.8rem, 기본: 1rem, 확대: 1.2rem`
 
 `html`의 `font-size`만 바꾸더라도 모든 경우에 대해 균일하게 적용되기 때문에 편리하다는 장점이 있다.
+
+---
+
+## 시맨틱 태그와 특이한 선택자(`^=`, `$=`)
+
+### 시맨틱 태그
+
+단순히 태그를 `div`로만 지정하면 이 태그가 정확히 무엇을 의미하는지 파악하기 힘들다. <br>
+그러나 `header`, `main`, `footer`, `aside`, `nav` 등의 시맨틱 태그를 사용하면 사용자 뿐만 아니라 웹 브라우저도 문서를 더 쉽게 이해할 수 있기 때문에 웹 접근성 또한 크게 향상된다.
+
+검색엔진은 검색을 수행하는 과정에서 이 시맨틱 태그를 분석하는데, 예를 들어 검색엔진의 검색로봇에서는 `article` 태그가 사용된 콘텐츠를 재배포할 수 있는 콘텐츠로 인식하고 반대로 `section` 태그로 묶은 콘텐츠는 재배포를 금지하는 콘텐츠로 인식한다.
+
+시맨틱 태그들로 아래와 같이 직관적으로 웹사이트를 구성할 수 있다.
+![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/5b0c593f-08c6-4c49-b76a-226ebc19d548)
+
+시맨틱 태그의 종류는 다음과 같다.
+
+| 태그 | 설명 |
+| ---- | ---- |
+| `header` | 사이트의 머리부분에 사용  |
+| `main` | 메인 콘텐츠를 나타내는데 사용  |
+| `section` | 여러 콘텐츠들을 주제별로 묶어주는 역할을 담당, 각 섹션들을 식별할 수단으로 `h1` ~ `h6` 요소를 자식으로 포함 |
+| `article` | 개별 콘텐츠를 나타내는 요소 |
+| `aside` | 좌우측의 사이드 영역, 주로 사이드바나 광고와 같은 부가 정보가 여기에 들어감  |
+| `footer` | 사이트의 바닥부분, 주로 연락처나 제작자 정보 등을 기술하는 부분 |
+| `nav` | 웹페이지의 메뉴를 만들 때 사용 |
+
+### `^=`, `$=`
+
+ex) `id`가 `ad`로 끝나는 `aside` 태그만 선택하려는 경우
+
+```css
+aside[id$=ad] {
+  background-color: gray;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+```
+
+ex) `id`가 `main`으로 시작하는 `section` 태그만 선택하려는 경우
+
+```css
+section[id^=main] {
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+  margin-bottom: 16px;
+}
+```
+
+> **요소의 `vertical-align`을 조절할 때, 그 요소의 높이와 부모 요소의 높이가 같은 경우?**<br><br>
+![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/689ef3c4-1757-43cf-997f-f8fce89c08ba)<br>
+![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/7f1c047d-4b1d-449a-b561-3a1b8db9a8c2)<br>
+해당 요소의 위치에는 영향을 미치지 않지만 주변 요소(ex. "NAVER" 아이콘 옆에 위치한 "로그인" 텍스트)의 수직 정렬이 변경될 수 있다.
+
+
+> **`line-height`가 가지는 의미?**<br><br>
+텍스트가 차지하는 영역의 높이를 의미하며, 만약 `height`가 정해지지 않고 텍스트가 한 줄로만 존재하는 경우, `line-height` 값은 `height`와 동일해진다.
