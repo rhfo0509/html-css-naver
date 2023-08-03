@@ -407,7 +407,6 @@ css에는 placeholder에 대한 가상 선택자 `::placeholder`를 제공한다
 검색엔진은 검색을 수행하는 과정에서 이 시맨틱 태그를 분석하는데, 예를 들어 검색엔진의 검색로봇에서는 `article` 태그가 사용된 콘텐츠를 재배포할 수 있는 콘텐츠로 인식하고 반대로 `section` 태그로 묶은 콘텐츠는 재배포를 금지하는 콘텐츠로 인식한다.
 
 시맨틱 태그들로 아래와 같이 직관적으로 웹사이트를 구성할 수 있다.
-![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/5b0c593f-08c6-4c49-b76a-226ebc19d548)
 
 시맨틱 태그의 종류는 다음과 같다.
 
@@ -451,3 +450,52 @@ section[id^=main] {
 
 > **`line-height`가 가지는 의미?**<br><br>
 텍스트가 차지하는 영역의 높이를 의미하며, 만약 `height`가 정해지지 않고 텍스트가 한 줄로만 존재하는 경우, `line-height` 값은 `height`와 동일해진다.
+
+---
+
+## `Grid`
+
+### 격자 배치하기
+
+```css
+#main-newsstand-grid {
+  display: grid;
+  width: 790px;
+  height: 224px;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: center;
+  align-items: center;
+}
+```
+
+* `display`를 `grid`(혹은 `inline-grid`)로 설정
+* `repeat(4, 1fr)` -> 1 : 1 : 1 : 1 비율
+* `grid-template-rows/columns`에 `fr` 단위를 지정하면 정해진 `width`와 `height` 내에  `fr`에 적힌 비율대로 칸들이 분배된다.
+* `flex`와 마찬가지로 `justify-content`와 `align-items`를 이용해 내부 콘텐츠를 정렬할 수 있다.
+
+### 테두리 생성하기
+
+```css
+#main-newsstand-grid {
+  display: grid;
+  width: 790px;
+  height: 224px;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  border: 1px solid var(--color_border_in);
+  gap: 1px;
+  background-color: var(--color_border_in);
+}
+#main-newsstand-grid > div {
+  background-color: white;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
+
+* 그리드 자체의 `background-color`를 `var(--color_border_in)`로 설정하고, 각 칸의 `background-color`는 `white`로 설정
+* 그리드의 `gap` 속성을 주면 각 칸에 해당되지 않는 틈새 부분만 `var(--color_border_in)`만 적용되므로 마치 내부에 테두리가 적용된 것 같은 현상 발생
+* 아예 바깥 부분의 테두리는 그리드 내에서 `border`를 지정해주면 된다.

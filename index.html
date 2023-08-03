@@ -515,9 +515,6 @@
           #main-left-ad {
             height: 130px;
           }
-          #main-newsstand {
-            height: 426px;
-          }
           #main-shopping {
             height: 560px;
           }
@@ -605,11 +602,122 @@
             line-height: 1.7rem;
             height: 183px;
           }
+          #main-newsstand {
+            height: 426px;
+            display: flex;
+            flex-direction: column;
+          }
+          #main-newsstand-top {
+            flex: 1;
+            padding: 18px 20px;
+          }
+          #main-newsstand header {
+            font-size: 1.6rem;
+            color: rgba(8,8,8,.5);
+            display: flex;
+            justify-content: flex-start;
+          }
+          #main-newsstand header .bold {
+            font-weight: 800;
+            color: black;
+          }
+          #main-newsstand-gray {
+            display: flex;
+            justify-content: flex-start;
+          }
+          #main-newsstand a {
+            text-decoration: none;
+          }
+          #main-newsstand a:visited {
+            color: inherit;
+          }
+          #main-newsstand-grid {
+            display: grid;
+            width: 790px;
+            height: 224px;
+            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: repeat(6, 1fr);
+            border: 1px solid var(--color_border_in);
+            gap: 1px;
+            background-color: var(--color_border_in);
+          }
+          #main-newsstand-grid > div {
+            background-color: white;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          #main-newsstand a:hover {
+            text-decoration: underline;
+          }
+          #main-newsstand footer {
+            padding: 10px 0 11px;
+            border-top: 1px solid var(--color_border_in);
+          }
         </style>
         <div id="main">
           <div id="main-left">
             <aside id="main-left-ad"></aside>
-            <section id="main-newsstand"></section>
+            <section id="main-newsstand">
+              <div id="main-newsstand-top">
+                <header>
+                  <a href="#" class="bold">뉴스스탠드</a>
+                  <a href="#">언론사편집</a>
+                  <a href="#">엔터</a>
+                  <a href="#">스포츠</a>
+                  <a href="#">경제</a>
+                </header>
+                <div id="main-newsstand-gray">
+                  <div>
+                    <a href="#">전체언론사</a>
+                    <a href="#">연합뉴스</a>
+                    <a href="#">野김은경, '노인폄하' 논란 나흘만에 사과…대한노인회 사과방문</a>
+                  </div>
+                  <div>
+                    <a href="#">뉴스스탠드</a>
+                    <a href="#">뉴스홈</a>
+                  </div>
+                </div>
+                <div id="main-newsstand-grid">
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                </div>
+              </div>
+              <footer>
+                <div>
+                  <button><span class="blind">이전</span></button>
+                  <div>언론사 더보기1페이지전체/4</div>
+                  <button><span class="blind">이후</span></button>
+                </div>
+                <div>
+                  <button><span class="blind">목록보기</span></button>
+                  <button><span class="blind">격자보기</span></button>
+                </div>
+              </footer>
+            </section>
             <section id="main-shopping"></section>
           </div>
           <div id="main-right">
