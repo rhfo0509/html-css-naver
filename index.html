@@ -613,17 +613,99 @@
           }
           #main-newsstand header {
             font-size: 1.6rem;
-            color: rgba(8,8,8,.5);
             display: flex;
             justify-content: flex-start;
+            margin-bottom: 17px;
+            line-height: 23px;
           }
-          #main-newsstand header .bold {
+          #main-newsstand header .active {
             font-weight: 800;
-            color: black;
+            color: var(--color_title);
+          }
+          #main-newsstand header .dot, #main-newsstand header .slash {
+            color: rgba(8,8,8,.5);
+            font-weight: 800;
+          }
+          #main-newsstand header .dot::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background-color: var(--color_dot_divider);
+            margin: 9px 7px 0;
+            border-radius: 50%;
+            vertical-align: 5px;
+          }
+          #main-newsstand header .slash {
+            position: relative;
+            padding-left: 26px;
+          }
+          #main-newsstand header .slash::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 13px;
+            width: 1px;
+            height: 15px;
+            background-color: var(--color_dot_divider);
+            transform: skewX(-15deg);
           }
           #main-newsstand-gray {
             display: flex;
             justify-content: flex-start;
+            padding: 12px 20px;
+            font-size: 1.4rem;
+            line-height: 26px;
+            background-color: var(--color_option_bg);
+            color: var(--color_body);
+          }
+          #main-newsstand-gray a:first-of-type::after {
+            content: '';
+            display: inline-block;
+            background-image: url(https://pm.pstatic.net/resources/asset/sp_main.e43f76ed.png);
+            background-size: 424px 409px;
+            background-position: -283px -187px;
+            background-repeat: no-repeat;
+            width: 9px;
+            height: 6px;
+            margin: 10px 0 0 5px;
+            vertical-align: 3px;
+          }
+          #main-newsstand-gray a:nth-of-type(2),
+          #main-newsstand-gray a:last-of-type {
+            padding-left: 25px;
+            position: relative;
+          }
+          #main-newsstand-gray a:last-of-type {
+            font-weight: bold;
+          }
+          #main-newsstand-gray a:nth-of-type(2)::before,
+          #main-newsstand-gray a:last-of-type::before {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 7px;
+            left: 12px;
+            background-color: var(--color_dot_divider);
+            width: 1px;
+            height: 12px;
+          }
+          #main-newsstand-gray a:nth-of-type(2)::after {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 3px;
+            background-color: var(--color_dot_divider);
+            margin: 12px 6px 0 6px;
+            border-radius: 50%;
+            vertical-align: 4px;
+          }
+          #main-newsstand-gray a:nth-of-type(3) {
+            flex: 1;
+            text-overflow: ellipsis;
+            margin-right: 50px;
+            white-space: nowrap;
+            overflow: hidden;
           }
           #main-newsstand a {
             text-decoration: none;
@@ -640,6 +722,8 @@
             border: 1px solid var(--color_border_in);
             gap: 1px;
             background-color: var(--color_border_in);
+            border-radius: 4px;
+            margin-top: 18px;
           }
           #main-newsstand-grid > div {
             background-color: white;
@@ -662,22 +746,19 @@
             <section id="main-newsstand">
               <div id="main-newsstand-top">
                 <header>
-                  <a href="#" class="bold">뉴스스탠드</a>
-                  <a href="#">언론사편집</a>
-                  <a href="#">엔터</a>
-                  <a href="#">스포츠</a>
-                  <a href="#">경제</a>
+                  <a href="#" class="active">뉴스스탠드</a>
+                  <a href="#" class="dot">언론사편집</a>
+                  <a href="#" class="slash">엔터</a>
+                  <a href="#" class="slash">스포츠</a>
+                  <a href="#" class="slash">경제</a>
                 </header>
                 <div id="main-newsstand-gray">
-                  <div>
-                    <a href="#">전체언론사</a>
-                    <a href="#">연합뉴스</a>
-                    <a href="#">野김은경, '노인폄하' 논란 나흘만에 사과…대한노인회 사과방문</a>
-                  </div>
-                  <div>
-                    <a href="#">뉴스스탠드</a>
-                    <a href="#">뉴스홈</a>
-                  </div>
+                  <a href="#">전체언론사</a>
+                  <a href="#">연합뉴스</a>
+                  <a href="#">When you get older your wild heart will live for younger days
+                    Think of me if ever you're afraid</a>
+                  <a href="#">뉴스스탠드</a>
+                  <a href="#">뉴스홈</a>
                 </div>
                 <div id="main-newsstand-grid">
                   <div>언론사</div>

@@ -497,5 +497,25 @@ section[id^=main] {
 ```
 
 * 그리드 자체의 `background-color`를 `var(--color_border_in)`로 설정하고, 각 칸의 `background-color`는 `white`로 설정
-* 그리드의 `gap` 속성을 주면 각 칸에 해당되지 않는 틈새 부분만 `var(--color_border_in)`만 적용되므로 마치 내부에 테두리가 적용된 것 같은 현상 발생
-* 아예 바깥 부분의 테두리는 그리드 내에서 `border`를 지정해주면 된다.
+* 그리드의 `gap` 속성을 주면 각 칸에 해당되지 않는 틈새 부분만 `var(--color_border_in)`가 적용되므로 마치 내부에 구분선이 생긴 것 같은 현상 발생
+* 그리드의 테두리는 그리드 내에서 `border`를 지정해주면 된다.
+
+---
+
+## `ellipsis`
+
+텍스트가 길 때 **`...`** 으로 줄이는 기술
+
+```css
+#main-newsstand-gray a:nth-of-type(3) {
+  flex: 1;
+  margin-right: 50px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+```
+
+* `white-space: nowrap`: 부모 요소의 가로폭을 넘어가더라도 자동으로 줄바꿈이 일어나지 않음
+* `overflow: hidden`: 넘치는 부분은 잘려서 보이지 않도록 함 (이 때 `text-overflow`가 `ellipsis`일 때는 잘린 부분이 `...`로 대체됨)
+
