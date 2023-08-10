@@ -519,3 +519,46 @@ section[id^=main] {
 * `white-space: nowrap`: 부모 요소의 가로폭을 넘어가더라도 자동으로 줄바꿈이 일어나지 않음
 * `overflow: hidden`: 넘치는 부분은 잘려서 보이지 않도록 함 (이 때 `text-overflow`가 `ellipsis`일 때는 잘린 부분이 `...`로 대체됨)
 
+---
+
+## 정렬할 때 방해되는 요소가 있다면?
+
+![image](https://github.com/rhfo0509/html-css-naver/assets/85874042/a3a4a07f-7e38-47b3-a038-bf8a0aef2a3e)
+
+```html
+<footer>
+  <button class="prev"><span class="blind">이전</span></button>
+  <div class="text"><span class="news">언론사</span> 더보기 1<span class="total">/4</span></div>
+  <button class="next"><span class="blind">이후</span></button>
+  <button class="list"><span class="blind">목록보기</span></button>
+  <button class="grid"><span class="blind">격자보기</span></button>
+</footer>
+```
+
+`footer` 태그 내에 총 5개의 요소가 존재하는데, 앞 3개 요소는 가운데에, 뒤 2개 요소는 오른쪽에 위치시키려고 한다.
+
+앞의 3개 요소를 하나로 묶어서 가운데 정렬하면 되지 않나 생각할 수도 있지만, **나머지 2개 요소가 차지하는 공간을 제외한 부분**에 대해 가운데 정렬을 수행하기 때문에 예상했던 위치보다 약간 왼쪽으로 치우친 결과를 보게 될 것이다.
+
+따라서 나머지 2개 요소에 대해 `position: absolute`(부모 요소에는 `relative`)를 적용해서 가운데 정렬하는 데 방해가 되지 않도록 해야 한다.
+
+```css
+#main-newsstand footer {
+  position: relative;
+  padding: 10px 0 11px;
+  border-top: 1px solid var(--color_border_in);
+  font-size: 1.3rem;
+  line-height: 35px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  color: var(--color_caption2);
+}
+#main-newsstand footer .list {
+  right: 49px;
+  padding: 18px 9px 18px 20px;
+}
+#main-newsstand footer .grid {
+  right: 0;
+  padding: 18px 20px 18px 9px;
+}
+```

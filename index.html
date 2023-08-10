@@ -194,8 +194,8 @@
         <style>
           #search > form {
             display: inline-flex;
-            width: 708px;
-            height: 60px;
+            width: 710px;
+            height: 62px;
             border: 1px solid #03c75a;
             border-radius: 33px;
             text-align: left;
@@ -227,7 +227,7 @@
             width: 68px;
             height: 100%;
             margin-right: 12px;
-            padding-left: 10px;
+            padding-left: 12px;
             position: relative;
           }
           #search-svg::after {
@@ -328,7 +328,7 @@
         </div>
         <style>
           #nav {
-            margin-top: 12px;
+            margin-top: 10px;
           }
           #nav > ul {
             display: flex;
@@ -515,9 +515,6 @@
           #main-left-ad {
             height: 130px;
           }
-          #main-shopping {
-            height: 560px;
-          }
           #main-login {
             display: flex;
             flex-direction: column;
@@ -602,8 +599,8 @@
             line-height: 1.7rem;
             height: 183px;
           }
-          #main-newsstand {
-            height: 426px;
+          .left-section {
+            height: 429px;
             display: flex;
             flex-direction: column;
           }
@@ -611,22 +608,22 @@
             flex: 1;
             padding: 18px 20px;
           }
-          #main-newsstand header {
+          .left-section header {
             font-size: 1.6rem;
             display: flex;
             justify-content: flex-start;
             margin-bottom: 17px;
             line-height: 23px;
           }
-          #main-newsstand header .active {
+          .left-section header .active {
             font-weight: 800;
             color: var(--color_title);
           }
-          #main-newsstand header .dot, #main-newsstand header .slash {
+          .left-section header .dot, .left-section header .slash {
             color: rgba(8,8,8,.5);
             font-weight: 800;
           }
-          #main-newsstand header .dot::before {
+          .left-section header .dot::before {
             content: '';
             display: inline-block;
             width: 4px;
@@ -636,11 +633,11 @@
             border-radius: 50%;
             vertical-align: 5px;
           }
-          #main-newsstand header .slash {
+          .left-section header .slash {
             position: relative;
             padding-left: 26px;
           }
-          #main-newsstand header .slash::before {
+          .left-section header .slash::before {
             content: '';
             position: absolute;
             top: 4px;
@@ -655,7 +652,7 @@
             justify-content: flex-start;
             padding: 12px 20px;
             font-size: 1.4rem;
-            line-height: 26px;
+            line-height: 25px;
             background-color: var(--color_option_bg);
             color: var(--color_body);
           }
@@ -669,7 +666,7 @@
             width: 9px;
             height: 6px;
             margin: 10px 0 0 5px;
-            vertical-align: 3px;
+            vertical-align: 2px;
           }
           #main-newsstand-gray a:nth-of-type(2),
           #main-newsstand-gray a:last-of-type {
@@ -698,7 +695,7 @@
             background-color: var(--color_dot_divider);
             margin: 12px 6px 0 6px;
             border-radius: 50%;
-            vertical-align: 4px;
+            vertical-align: 3px;
           }
           #main-newsstand-gray a:nth-of-type(3) {
             flex: 1;
@@ -707,16 +704,16 @@
             white-space: nowrap;
             overflow: hidden;
           }
-          #main-newsstand a {
+          .left-section a {
             text-decoration: none;
           }
-          #main-newsstand a:visited {
+          .left-section a:visited {
             color: inherit;
           }
           #main-newsstand-grid {
             display: grid;
             width: 790px;
-            height: 224px;
+            height: 226px;
             grid-template-rows: repeat(4, 1fr);
             grid-template-columns: repeat(6, 1fr);
             border: 1px solid var(--color_border_in);
@@ -732,18 +729,148 @@
             justify-content: center;
             align-items: center;
           }
-          #main-newsstand a:hover {
+          .left-section a:hover {
             text-decoration: underline;
           }
-          #main-newsstand footer {
+          .left-section footer {
+            position: relative;
             padding: 10px 0 11px;
             border-top: 1px solid var(--color_border_in);
+            font-size: 1.3rem;
+            line-height: 35px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            color: var(--color_caption2);
           }
-        </style>
+          .left-section footer .prev {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--color_button_border);
+            background-color: var(--color_button1_bg);
+            border-radius: 50%;
+          }
+          .left-section footer .prev::before,
+          .left-section footer .next::before {
+            content: '';
+            display: inline-block;
+            background-image: url(https://pm.pstatic.net/resources/asset/sp_main.89f0d213.png);
+            background-size: 434px 422px;
+            background-position: -115px -389px;
+            background-repeat: no-repeat;
+            width: 10px;
+            height: 12px;
+          }
+          .left-section footer .text {
+            padding: 0 16px;
+            min-width: 156px;
+          }
+          .left-section footer .prev::before {
+            transform: rotate(180deg);
+          }
+          .left-section footer .next {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--color_button_border);
+            background-color: var(--color_button1_bg);
+            border-radius: 50%;
+          }
+          .left-section footer .news {
+            color: var(--color_news);
+          }
+          .left-section footer .total {
+            color: rgba(96, 96, 96, 0.5);
+          }
+          .left-section footer .list,
+          .left-section footer .grid {
+            position: absolute;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            top: 0;
+          }
+          .left-section footer .list {
+            right: 49px;
+            padding: 18px 9px 18px 20px;
+          }
+          .left-section footer .list::before {
+            content: '';
+            display: inline-block;
+            background-image: url(https://pm.pstatic.net/resources/asset/sp_main.89f0d213.png);
+            background-size: 434px 422px;
+            background-position: -391px -229px;
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+          }
+          .left-section footer .list:hover::before {
+            background-position: -391px -208px;
+          }
+          .left-section footer .grid {
+            right: 0;
+            padding: 18px 20px 18px 9px;
+          }
+          .left-section footer .grid::before {
+            content: '';
+            display: inline-block;
+            background-image: url(https://pm.pstatic.net/resources/asset/sp_main.89f0d213.png);
+            background-size: 434px 422px;
+            background-position: -84px -368px;
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+          }
+          .left-section footer .grid:hover::before {
+            background-position: -63px -368px;
+          }
+          
+          #main-shopping {
+            height: 561px;
+          }
+          #main-shopping-top {
+            padding: 19px 20px 0 20px;
+          }
+          #main-shopping-gray {
+            display: flex;
+            font-size: 1.4rem;
+          }
+          #main-shopping-gray .left {
+            display: flex;
+            background-color: var(--color_option_bg);
+            width: 668px;
+            padding: 15px 20px 14px;
+            border-radius: 4px;
+            line-height: 21px;
+            font-weight: 700;
+          }
+          #main-shopping-grid {
+            height: 394px;
+            padding: 18px 20px 1px;
+          }
+          #main-shopping footer .text {
+            min-width: 176px;
+          }
+          #main-shopping footer .hot {
+            color: #9858f5;
+          }
+          #main-shopping footer .ad {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            border: 1px solid var(--color_border_out);
+            color: var(--color_caption2);
+            width: 32px;
+            border-radius: 4px;
+            font-size: 1.2rem;
+            line-height: 18px;
+            text-align: center;
+            font-weight: 500;
+          }
+          </style>
         <div id="main">
           <div id="main-left">
             <aside id="main-left-ad"></aside>
-            <section id="main-newsstand">
+            <section id="main-newsstand" class="left-section">
               <div id="main-newsstand-top">
                 <header>
                   <a href="#" class="active">뉴스스탠드</a>
@@ -757,9 +884,9 @@
                   <a href="#">연합뉴스</a>
                   <a href="#">When you get older your wild heart will live for younger days
                     Think of me if ever you're afraid</a>
-                  <a href="#">뉴스스탠드</a>
-                  <a href="#">뉴스홈</a>
-                </div>
+                    <a href="#">뉴스스탠드</a>
+                    <a href="#">뉴스홈</a>
+                  </div>
                 <div id="main-newsstand-grid">
                   <div>언론사</div>
                   <div>언론사</div>
@@ -788,18 +915,52 @@
                 </div>
               </div>
               <footer>
-                <div>
-                  <button><span class="blind">이전</span></button>
-                  <div>언론사 더보기1페이지전체/4</div>
-                  <button><span class="blind">이후</span></button>
-                </div>
-                <div>
-                  <button><span class="blind">목록보기</span></button>
-                  <button><span class="blind">격자보기</span></button>
-                </div>
+                <button class="prev"><span class="blind">이전</span></button>
+                <div class="text"><span class="news">언론사</span> 더보기 1<span class="total">/4</span></div>
+                <button class="next"><span class="blind">이후</span></button>
+                <button class="list"><span class="blind">목록보기</span></button>
+                <button class="grid"><span class="blind">격자보기</span></button>
               </footer>
             </section>
-            <section id="main-shopping"></section>
+            <section id="main-shopping"  class="left-section">
+              <div id="main-shopping-top">
+                <header>
+                  <a href="#" class="active">쇼핑</a>
+                  <a href="#" class="slash">맨즈</a>
+                  <a href="#" class="slash">원쁠딜</a>
+                  <a href="#" class="slash">쇼핑라이브</a>
+                </header>
+                <div id="main-shopping-gray">
+                  <div class="left">
+                    <a href="#">오늘의 혜택</a>
+                  </div>
+                  <div class="right">
+                    <span>1</span>
+                    <span>/13</span>
+                    <button class="prev"><span class="blind">이전</span></button>
+                    <button class="next"><span class="blind">이후</span></button>
+                  </div>
+                </div>
+                <div id="main-shopping-grid">
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                  <div>언론사</div>
+                </div>
+              </div>
+              <footer>
+                <button class="prev"><span class="blind">이전</span></button>
+                <div class="text"><span class="hot">쇼핑아이템</span> 더보기 1<span class="total">/13</span></div>
+                <button class="next"><span class="blind">이후</span></button>
+                <span class="ad">AD</span>
+              </footer>
+            </section>
           </div>
           <div id="main-right">
             <section id="main-login">
